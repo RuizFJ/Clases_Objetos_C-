@@ -126,7 +126,7 @@ namespace PjBoleta
 
         private void btnIngresarBoleta_Click(object sender, EventArgs e)
         {
-            ListViewItem fila = new(obj.CantidadComprada.ToString());
+            ListViewItem fila = new(lblNumero.Text);
             fila.SubItems.Add(txtFecha.Text);
             fila.SubItems.Add(TotalCantidad().ToString());
             fila.SubItems.Add(DeterminaTotal().ToString("C"));
@@ -155,6 +155,20 @@ namespace PjBoleta
                 total += Convert.ToInt32(lvResumenBoletas.Items[i].SubItems[0].Text);
             }
             return total;
+        }
+
+        private void lvDatosProducto_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ListViewItem item = lvDatosProducto.GetItemAt(e.X, e.Y);
+            string producto = lvDatosProducto.Items[item.Index].SubItems[1].Text;
+            DialogResult r = MessageBox.Show("Esta seguro de eliminar el producto = " + producto + "?", "boleta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if ( r == DialogResult.Yes)
+            {
+                lvDatosProducto.Items.Remove(item);
+                lblTotal.Text= DeterminaTotal().ToString();
+                MessageBox.Show("Elemento eliminado correctamente");
+            }
         }
     }
 }

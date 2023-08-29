@@ -264,6 +264,7 @@
             this.lvDatosProducto.TabIndex = 14;
             this.lvDatosProducto.UseCompatibleStateImageBehavior = false;
             this.lvDatosProducto.View = System.Windows.Forms.View.Details;
+            this.lvDatosProducto.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvDatosProducto_MouseDoubleClick);
             // 
             // columnHeader5
             // 
